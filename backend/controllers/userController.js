@@ -21,6 +21,7 @@ const signIn = async (req, res) => {
     const user = await userModel.findOne({email});
     console.log(user);
     const token = jwt.sign({id:user._id} , JWT_SECRET);
+    res.cookie('token' , token);
     res.status(200).json({
         message: 'User is logged in ',
         token
