@@ -12,9 +12,14 @@ const morgan = require('morgan');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173", // ✅ Frontend origin allow karein
+    credentials: true // ✅ Cookies allow karein
+  }));
+  const cookieParser = require('cookie-parser');
+  app.use(cookieParser());
 // Routes
-
 app.get('/' , (req , res)=>{
     res.json({message:'Hello from server!'})
 });

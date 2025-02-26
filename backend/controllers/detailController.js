@@ -29,7 +29,7 @@ const createDetail = async(req, res) =>{
 }
 
 const fetchDetails = async (req , res)=>{
-    const fetchdetails = await detailModel.find();
+    const fetchdetails = await detailModel.find().populate('userId');
     return res.status(200).json({
         fetch:fetchdetails
     });
